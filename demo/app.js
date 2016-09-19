@@ -1,3 +1,2 @@
-Component.create('Main').then(function($main){
-    $('#app').append($main);
-});
+State.setDefaultState('Main');
+State.load(['Main', 'StateDemo']);
