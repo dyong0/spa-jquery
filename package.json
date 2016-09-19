@@ -23,7 +23,8 @@
   "homepage": "https://github.com/dyong0/spa#readme",
   "dependencies": {
     "jquery": "^3.1.0",
-    "promise-polyfill": "^6.0.2"
+    "promise-polyfill": "^6.0.2",
+    "url-pattern": "^1.0.1"
   },
   "devDependencies": {
     "grunt": "^1.0.1",
