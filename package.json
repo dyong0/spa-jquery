@@ -1,0 +1,36 @@
+{
+  "name": "spa",
+  "version": "0.1.0",
+  "description": "Library for creating SPA with components and app state",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/dyong0/spa.git"
+  },
+  "keywords": [
+    "spa",
+    "component-based",
+    "state-based"
+  ],
+  "author": "Joel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dyong0/spa/issues"
+  },
+  "homepage": "https://github.com/dyong0/spa#readme",
+  "dependencies": {
+    "jquery": "^3.1.0",
+    "promise-polyfill": "^6.0.2"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-uglify": "^2.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "jshint-stylish": "^2.2.1"
+  }
+}
