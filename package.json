@@ -1,7 +1,7 @@
 {
   "name": "spa",
   "version": "0.1.0",
-  "description": "Library for creating SPA with components and app state",
+  "description": "Simple js framework for creating SPA easily based on components and states",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
