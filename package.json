@@ -1,5 +1,5 @@
 {
-  "name": "spa",
+  "name": "spa-jquery",
   "version": "0.1.0",
   "description": "Simple js framework for creating SPA easily based on components and states",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/dyong0/spa.git"
+    "url": "git+ssh://git@github.com/dyong0/spa-jquery.git"
   },
   "keywords": [
     "spa",
@@ -18,9 +18,9 @@
   "author": "Joel",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/dyong0/spa/issues"
+    "url": "https://github.com/dyong0/spa-jquery/issues"
   },
-  "homepage": "https://github.com/dyong0/spa#readme",
+  "homepage": "https://github.com/dyong0/spa-jquery#readme",
   "dependencies": {
     "jquery": "^3.1.0",
     "promise-polyfill": "^6.0.2",
