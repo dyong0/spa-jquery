@@ -1,9 +1,5 @@
 (function(){
 
-module.exports = {};
-  
-})();;(function(){
-
 var Promise = Promise ? Promise : require('promise-polyfill');
 var $ = require('jquery');
 

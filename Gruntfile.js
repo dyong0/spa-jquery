@@ -23,8 +23,8 @@ module.exports = function (grunt) {
                 separator: ';',
             },
             dist: {
-                src: ['src/spa.js', 'src/component.js', 'src/state.js'],
-                dest: 'dist/spa.js',
+                src: ['src/spa-jquery.js', 'src/component.js', 'src/state.js'],
+                dest: 'dist/spa-jquery.js',
             },
         },
         uglify: {
@@ -32,8 +32,8 @@ module.exports = function (grunt) {
                 banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
             },
             build: {
-                src: 'dist/spa.js',
-                dest: 'dist/spa.min.js'
+                src: 'dist/spa-jquery.js',
+                dest: 'dist/spa-jquery.min.js'
             }
         }
     });

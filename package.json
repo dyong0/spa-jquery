@@ -1,8 +1,8 @@
 {
   "name": "spa-jquery",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Simple js framework for creating SPA easily based on components and states",
-  "main": "index.js",
+  "main": "dist/spa-jquery.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
