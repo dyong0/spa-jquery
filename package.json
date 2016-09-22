@@ -1,5 +1,5 @@
 {
-  "name": "spa",
+  "name": "spa-jquery",
   "version": "0.1.0",
   "description": "Simple js framework for creating SPA easily based on components and states",
   "main": "index.js",
