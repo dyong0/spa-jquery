@@ -1,3 +1,7 @@
+(function(){
+
+var $ = require('jquery');
+
 var INITIAL_STATE = {
     onEnter: function (param, next) {
         next();
@@ -11,7 +15,6 @@ var INITIAL_STATE = {
 
 var State = {
     states: { INITIAL_STATE: INITIAL_STATE },
-    rootPath: 'states',
     currentState: INITIAL_STATE,
     defaultState: null,
 };
@@ -34,14 +37,13 @@ $(document).on('click', '[sref]', function () {
     State.go(stateName, stateParams);
 });
 
-State.setRootPath = function (rootPath) {
-    if (rootPath[rootPath.length - 1] === '/') {
-        this.rootPath = rootPath.slice(0, -1);
-        return;
+$(document).ready(function(){
+    var hash = decodeURI(window.location.hash);
+    if(hash === null || hash.length === 0)
+    {
+        State.go(State.defaultState);
     }
-
-    this.rootPath = rootPath;
-};
+});
 
 State.setDefaultState = function (stateName) {
     this.defaultState = stateName;
@@ -78,9 +80,7 @@ State.findStateByHash = function (hash) {
 };
 
 State.translateState = function (currentState, nextState, stateParams) {
-    new Promise(function (resolve) {
-        currentState.onExit(resolve);
-    }).then(function () {
+    currentState.onExit(function () {
         State.currentState = nextState;
         nextState.onEnter(stateParams, nextState.onState);
     });
@@ -90,23 +90,6 @@ State.go = function (stateName, stateParams) {
     State.translateState(this.currentState, this.states[stateName], stateParams);
 };
 
-State.load = function (states) {
-    var self = this;
-    var loadedCount = 0;
+module.exports.State = State;
 
-    new Promise(function (resolve) {
-        function onAllLoaded() {
-            loadedCount++;
-
-            if (loadedCount === states.length) {
-                resolve();
-            }
-        }
-
-        for (var i = 0; i < states.length; ++i) {
-            $.getScript(self.rootPath + '/' + states[i] + '.js').then(onAllLoaded);
-        }
-    }).then(function () {
-        State.go(self.defaultState);
-    });
-};
+})();

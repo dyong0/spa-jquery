@@ -1,3 +1,8 @@
+(function(){
+
+var Promise = Promise ? Promise : require('promise-polyfill');
+var $ = require('jquery');
+
 var Component = {
     definitions: {},
     rawHtmls: {},
@@ -28,14 +33,12 @@ Component.loadComponent = function (name) {
     var self = this;
     var componentPath = self.rootPath + '/' + name.replace(/\./g, '/');
     return new Promise(function (resolve) {
-        $.getScript(componentPath + '.js', function () {
-            $.get(componentPath + '.html', function (rawHtml) {
-                self.rawHtmls[name] = rawHtml;
+        $.get(componentPath + '.html', function (rawHtml) {
+            self.rawHtmls[name] = rawHtml;
 
-                resolve({
-                    def: self.definitions[name],
-                    rawHtml: self.rawHtmls[name]
-                });
+            resolve({
+                def: self.definitions[name],
+                rawHtml: self.rawHtmls[name]
             });
         });
     });
@@ -94,3 +97,8 @@ Component.create = function (name) {
 
     return willCreateComponent;
 };
+
+module.exports.Component = Component;
+
+
+})();

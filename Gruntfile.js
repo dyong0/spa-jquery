@@ -6,14 +6,14 @@ module.exports = function (grunt) {
         watch: {
             scripts: {
                 files: ['src/**/*.js'],
-                tasks: ['jshint', 'concat'],
+                tasks: ['jshint', 'concat', 'uglify'],
                 options: {
                     spawn: false,
                 },
             },
         },
         jshint: {
-            all: ['src/**/*.js', '/demo/**/*.js'],
+            all: ['src/**/*.js'],
             options: {
                 reporter: require('jshint-stylish')
             }
@@ -23,7 +23,7 @@ module.exports = function (grunt) {
                 separator: ';',
             },
             dist: {
-                src: ['src/*.js'],
+                src: ['src/spa.js', 'src/component.js', 'src/state.js'],
                 dest: 'dist/spa.js',
             },
         },
@@ -32,8 +32,8 @@ module.exports = function (grunt) {
                 banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
             },
             build: {
-                src: 'src/<%= pkg.name %>.js',
-                dest: 'build/<%= pkg.name %>.min.js'
+                src: 'dist/spa.js',
+                dest: 'dist/spa.min.js'
             }
         }
     });
