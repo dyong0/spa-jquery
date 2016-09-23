@@ -186,7 +186,7 @@ State.findStateByHash = function (hash) {
 State.translateState = function (currentState, nextState, stateParams) {
     currentState.onExit(function () {
         State.currentState = nextState;
-        nextState.onEnter(stateParams, nextState.onState);
+        nextState.onEnter(stateParams, nextState.onState.bind(nextState));
     });
 };
 
