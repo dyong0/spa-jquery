@@ -104,6 +104,7 @@ module.exports.Component = Component;
 })();;(function(){
 
 var $ = require('jquery');
+var UrlPattern = require('url-pattern');
 
 var INITIAL_STATE = {
     onEnter: function (param, next) {
