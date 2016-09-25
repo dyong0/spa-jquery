@@ -15,7 +15,7 @@ module.exports = function (grunt) {
         jshint: {
             all: ['src/**/*.js'],
             options: {
-                reporter: require('jshint-stylish')
+                reporter: require('jshint-stylish', { beep: true })
             }
         },
         concat: {
