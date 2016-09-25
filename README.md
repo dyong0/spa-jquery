@@ -61,7 +61,7 @@ $ npm install spa-jquery
 ```
 
 ## Usage
-Checkout [Wiki](https://github.com/dyong0/spa-jquery/wiki/Usage)
+Checkout [Tutorial](https://github.com/dyong0/spa-jquery/wiki/Tutorial) and [Documents](https://github.com/dyong0/spa-jquery/wiki/Documents)
 
 ## Demo
 [Demo page](http://dyong0.github.io) and [the source code](http://github.com/dyong0/spa-jquery-demo).
