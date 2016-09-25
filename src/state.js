@@ -17,6 +17,8 @@
     var State = {
         states: { INITIAL_STATE: INITIAL_STATE },
         currentState: INITIAL_STATE,
+        nextState : null,
+        nextStateParams : null,
         defaultState: null,
     };
 
@@ -39,7 +41,17 @@
             hash = hash.slice(1);
         }
 
-        State.translateState(this.currentState, State.findStateByHash(hash), stateParams);
+        if(this.nextState){
+            State.translateState(this.currentState, this.nextState, this.nextStateParams);
+        } else{
+            var search = hash.slice(hash.indexOf('?') + 1);
+            var stateParams = this.parseQuery(search); 
+
+            State.translateState(this.currentState, this.findStateByHash(hash), stateParams);
+        }
+
+        this.nextState = null;
+        this.nextStateParams = null;
     };
 
     State.findStateByHash = function (hash) {
@@ -62,7 +74,14 @@
     };
 
     State.go = function (stateName, stateParams) {
-        State.translateState(this.currentState, this.states[stateName], stateParams);
+        this.nextState = this.states[stateName];
+        this.nextStateParams = stateParams;
+
+        window.location.hash = State.buildHash(this.states[stateName], stateParams);
+    };
+
+    State.buildHash = function(state, stateParams){
+        return '#' + state.urlPattern.stringify(stateParams);
     };
 
     $(window).on('hashchange', function () {
@@ -79,9 +98,14 @@
 
         var stateName = sref.slice(0, sref.indexOf('?'));
         var search = sref.slice(sref.indexOf('?') + 1);
-        var stateParams = JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"') + '"}');
+        var stateParams = State.parseQuery(search);
+        
         State.go(stateName, stateParams);
     });
+
+    State.parseQuery = function(query){
+        return JSON.parse('{"' + decodeURI(query).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"') + '"}');
+    };
 
     State.onReady = function () {
         var self = this;
