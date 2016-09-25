@@ -63,5 +63,8 @@ $ npm install spa-jquery
 ## Usage
 Checkout [Wiki](https://github.com/dyong0/spa-jquery/wiki/Usage)
 
+## Demo
+[Demo page](http://dyong0.github.io) and [the source code](http://github.com/dyong0/spa-jquery-demo).
+
 ## How to contribute
 Welcome issues and pull requests! Please create an issue before making pull requests. I'll reply asap. Also if you want to become a contributer please contact me by my email written in my github account.
