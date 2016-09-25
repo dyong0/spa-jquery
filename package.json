@@ -1,6 +1,6 @@
 {
   "name": "spa-jquery",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "Simple js framework for creating SPA easily based on components and states",
   "main": "dist/spa-jquery.js",
   "scripts": {
