@@ -1,22 +1,11 @@
-(function () {
+(function (init) {
 
     var $ = require('jquery');
     var UrlPattern = require('url-pattern');
 
-    var INITIAL_STATE = {
-        onEnter: function (param, next) {
-            next();
-        },
-        onState: function (param) {
-        },
-        onExit: function (next) {
-            next();
-        }
-    };
-
     var State = {
-        states: { INITIAL_STATE: INITIAL_STATE },
-        currentState: INITIAL_STATE,
+        states: {},
+        currentState: null,
         nextState: null,
         nextStateParams: null,
         defaultState: null,
@@ -35,7 +24,7 @@
             state.urlPattern = new UrlPattern(state.urlPattern);
         } else {
             state.urlPattern = {
-                match: function () { return false }
+                match: function () { return false; }
             };
         }
 
@@ -132,6 +121,22 @@
         });
     };
 
+    init(State);
+
     module.exports.State = State;
 
-})();
+})(function (State) {
+    var INITIAL_STATE = {
+        onEnter: function (param, next) {
+            next();
+        },
+        onState: function (param) {
+        },
+        onExit: function (next) {
+            next();
+        }
+    };
+
+    State.define('INITIAL_STATE', INITIAL_STATE);
+    State.currentState = INITIAL_STATE;
+});
