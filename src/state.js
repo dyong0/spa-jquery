@@ -17,8 +17,8 @@
     var State = {
         states: { INITIAL_STATE: INITIAL_STATE },
         currentState: INITIAL_STATE,
-        nextState : null,
-        nextStateParams : null,
+        nextState: null,
+        nextStateParams: null,
         defaultState: null,
     };
 
@@ -31,7 +31,13 @@
             throw new Error('The state \"' + name + '\" exists already');
         }
 
-        state.urlPattern = new UrlPattern(state.urlPattern);
+        if (state.urlPattern) {
+            state.urlPattern = new UrlPattern(state.urlPattern);
+        } else {
+            state.urlPattern = {
+                match: function () { return false }
+            };
+        }
 
         this.states[name] = state;
     };
@@ -41,11 +47,15 @@
             hash = hash.slice(1);
         }
 
-        if(this.nextState){
+        if (this.nextState) {
             State.translateState(this.currentState, this.nextState, this.nextStateParams);
-        } else{
-            var search = hash.slice(hash.indexOf('?') + 1);
-            var stateParams = this.parseQuery(search); 
+        } else {
+            var hasSearch = (function (hash) {
+                return hash.indexOf('?') !== -1 && hash.slice(hash.indexOf('?') + 1).length > 1;
+            } (hash));
+
+            var search = hasSearch ? hash.slice(hash.indexOf('?') + 1) : null;
+            var stateParams = search ? this.parseQuery(search) : null;
 
             State.translateState(this.currentState, this.findStateByHash(hash), stateParams);
         }
@@ -80,7 +90,7 @@
         window.location.hash = State.buildHash(this.states[stateName], stateParams);
     };
 
-    State.buildHash = function(state, stateParams){
+    State.buildHash = function (state, stateParams) {
         return '#' + state.urlPattern.stringify(stateParams);
     };
 
@@ -99,21 +109,23 @@
         var stateName = sref.slice(0, sref.indexOf('?'));
         var search = sref.slice(sref.indexOf('?') + 1);
         var stateParams = State.parseQuery(search);
-        
+
         State.go(stateName, stateParams);
     });
 
-    State.parseQuery = function(query){
+    State.parseQuery = function (query) {
         return JSON.parse('{"' + decodeURI(query).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"') + '"}');
     };
 
     State.onReady = function () {
         var self = this;
-        
+
         return new Promise(function (resolve) {
             var hash = decodeURI(window.location.hash);
             if (hash === null || hash.length === 0) {
                 self.go(self.defaultState);
+            } else {
+                State.onStateChange(hash);
             }
 
             resolve();
