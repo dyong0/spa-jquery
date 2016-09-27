@@ -110,7 +110,7 @@
 
         function createSingleComponent() {
             return self.loadComponent(name).then(function (result) {
-                return $.extend($(result.rawHtml), result.def, extensions);
+                return $.extend($(result.rawHtml), extensions, result.def);
             }).then(function ($component) {
                 if ($component.events) {
                     var events = $component.events;
@@ -164,7 +164,8 @@
     module.exports.Component = Component;
 
 
-})();;(function (init) {
+})();
+;(function (init) {
 
     var $ = require('jquery');
     var UrlPattern = require('url-pattern');
