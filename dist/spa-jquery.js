@@ -101,7 +101,9 @@
                     this[key] = states[key];
                 }
 
-                this.render();
+                if (this.is(':visible')) {
+                    this.render();
+                }
             },
             render: function () {
                 //default render fuction
