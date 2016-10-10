@@ -1,3 +1,6 @@
+# [DEPRECATED]
+I Suggest that you use React + Redux + fetch with WebPack and Grunt in ES6.
+
 # SPA jQuery
 Simple SPA js framework based on [jQuery](http://jquery.com).
 
