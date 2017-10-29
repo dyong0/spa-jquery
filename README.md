@@ -1,6 +1,5 @@
-# This repo is unmaintained
-I Suggest that you use React + Redux + fetch with WebPack and Grunt in ES6.
-And please stop using jQuery..
+# This repository is unmaintained
+I recommend React + Redux + fetch with WebPack and Gulp in ES6.
 
 # SPA jQuery
 Simple SPA js framework based on [jQuery](http://jquery.com).
